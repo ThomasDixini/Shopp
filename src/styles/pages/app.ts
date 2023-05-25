@@ -7,7 +7,7 @@ export const Container = styled('div', {
      alignItems: 'flex-start',
      height: '100vh',
 
-     div: {
+    /* 'div > div': {
         height: '100%',
         padding: '2rem',
         background: 'linear-gradient(90deg, transparent, #121214)',
@@ -16,7 +16,7 @@ export const Container = styled('div', {
         display: 'flex',
         alignItems: 'center',
         'z-index': '999'
-    }
+    }*/
 })
 
 export const Header = styled('header', {

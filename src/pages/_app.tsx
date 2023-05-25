@@ -13,9 +13,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <Header>
         <Image src={igShop} alt="Logo" />
       </Header>
-      <div>
+      {/*<div>
         <ArrowRight size={32} color="white"/>
-      </div>
+  </div>*/}
       <Component {...pageProps} />
     </Container>
   );
