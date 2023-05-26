@@ -11,6 +11,7 @@ import Stripe from "stripe";
 import { stripe } from "@/lib/stripe";
 import { GetServerSideProps, GetStaticProps } from "next";
 import Link from "next/link";
+import Head from "next/head";
 
 interface HomeProps {
   products: {
@@ -30,23 +31,29 @@ export default function Home(props: HomeProps) {
   })
 
   return (
-    <MainContainer ref={slideRef} className='keen-slider'>
-      {props.products.map(product => {
-        return(
-            <Product 
-              key={product.id} 
-              href={`/product/${product.id}`} 
-              className='keen-slider__slide'
-            >
-              <Image src={product.imageUrl} alt="" width={520} height={480}/>
-              <footer>
-                <span> {product.name}</span>
-                <strong> {product.price} </strong>
-              </footer>
-            </Product>
-        );
-      })}
-    </MainContainer>
+    <>
+      <Head>
+          <title>Home | Ignite Shop </title>
+      </Head>
+
+      <MainContainer ref={slideRef} className='keen-slider'>
+        {props.products.map(product => {
+          return(
+              <Product 
+                key={product.id} 
+                href={`/product/${product.id}`} 
+                className='keen-slider__slide'
+              >
+                <Image src={product.imageUrl} alt="" width={520} height={480}/>
+                <footer>
+                  <span> {product.name}</span>
+                  <strong> {product.price} </strong>
+                </footer>
+              </Product>
+          );
+        })}
+      </MainContainer>
+    </>
   )
 }
 
