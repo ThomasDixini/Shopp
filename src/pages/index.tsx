@@ -12,6 +12,7 @@ import { stripe } from "@/lib/stripe";
 import { GetServerSideProps, GetStaticProps } from "next";
 import Link from "next/link";
 import Head from "next/head";
+import { Handbag } from "phosphor-react";
 
 interface HomeProps {
   products: {
@@ -46,8 +47,13 @@ export default function Home(props: HomeProps) {
               >
                 <Image src={product.imageUrl} alt="" width={520} height={480}/>
                 <footer>
-                  <span> {product.name}</span>
-                  <strong> {product.price} </strong>
+                  <div>
+                    <span> {product.name}</span>
+                    <strong> {product.price} </strong>
+                  </div>
+                  <button>
+                    <Handbag weight="bold" size={24}/>
+                  </button>
                 </footer>
               </Product>
           );

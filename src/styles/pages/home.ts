@@ -39,14 +39,30 @@ export const Product = styled(Link , {
 
         borderRadius: 6,
 
-        padding: '2rem',
+        padding: '1rem',
         backgroundColor: 'rgba(0,0,0,0.6)',
 
         color: '$white',
 
-        strong: {
-            fontSize: '$2xl',
-            color: '$green500'
+        div: {
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.25rem',
+
+            strong: {
+                fontSize: '$2xl',
+                color: '$green500'
+            },
+        },
+        button: {
+            padding: '0.825rem',
+            borderRadius: 6,
+            border: 0,
+            backgroundColor: '$green300',
+            color: '$white',
+            '&:hover': {
+                filter: 'brightness(0.8)',
+            }
         }
     },
 
