@@ -1,4 +1,4 @@
-import { styled } from "..";
+import { keyframes, styled } from "..";
 
 export const Container = styled('div', {
      display: 'flex',
@@ -6,6 +6,7 @@ export const Container = styled('div', {
      justifyContent: 'center',
      alignItems: 'flex-start',
      height: '100vh',
+     position: 'relative',
 
     /* 'div > div': {
         height: '100%',
@@ -17,6 +18,8 @@ export const Container = styled('div', {
         alignItems: 'center',
         'z-index': '999'
     }*/
+    transition: 'all 1s ease-in-out',
+    overflowX: 'hidden',
 })
 
 export const Header = styled('header', {
@@ -40,18 +43,38 @@ export const Header = styled('header', {
     }
 })
 
+const moveAside = keyframes({
+    'from': {transform: 'translateX(110%)'},
+    'to': {transform: 'translateX(0%)'}
+})
+
 export const AsideContainer = styled('aside', {
+    animation: `${moveAside} 0.5s ease-in-out`, 
+
     position: 'absolute',
     right: 0,
     'z-index': 999,
     minHeight: '100vh',
     width: 480,
     backgroundColor: '$gray800',
+    'box-shadow': '-4px 0px 30px rgba(0,0,0,0.8)',
 
     display: 'flex',
     flexDirection: 'column',
 
     padding: '3rem',
+
+    svg: {
+        position: 'absolute',
+        right: '1.5rem',
+        top: '1.5rem',
+        cursor: 'pointer',
+
+        '&:hover': {
+            color: '$white',
+            border: '1px solid $white'
+        }
+    },
 
     span: {
         fontSize: '$md',
@@ -66,7 +89,10 @@ export const AsideContainer = styled('aside', {
         div: {
             display: 'flex',
             justifyContent: 'space-between',
-            fontSize: '1.25rem'
+            fontSize: '1.15rem',
+            '& > span:last-child, & > strong:last-child': {
+                fontSize: '1.5rem',
+            }
         }
     },
 
@@ -111,4 +137,14 @@ export const ProductContainer = styled('article', {
         color: '$green500',
         cursor: 'pointer',
     }
+})
+
+export const Overlay = styled('div', {
+    position: 'fixed',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    background: 'rgba(0,0,0,0.4)',
+    'z-index': 1,
 })
