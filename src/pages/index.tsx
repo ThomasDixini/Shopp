@@ -38,11 +38,9 @@ export default function Home(props: HomeProps) {
       </Head>
 
       <MainContainer ref={slideRef} className='keen-slider'>
-
         <div onClick={(e: any) => e.stopPropagation() || instanceRef.current?.next()}>
           <ArrowRight size={32} color="white" />
         </div>
-        
         {props.products.map(product => {
           return(
               <Product 

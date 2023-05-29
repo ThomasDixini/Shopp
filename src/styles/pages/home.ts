@@ -8,7 +8,7 @@ export const MainContainer = styled('main', {
     marginLeft: 'auto',
     minHeight: 620,
 
-    'div:first-child': {
+    '& > div:first-child': {
         height: '100%',
         padding: '2rem',
         background: 'linear-gradient(90deg, transparent, #121214)',
