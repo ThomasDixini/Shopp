@@ -16,7 +16,7 @@ export const MainContainer = styled('main', {
         right: '0',
         display: 'flex',
         alignItems: 'center',
-        'z-index': '999',
+        'z-index': '2',
         cursor:'pointer'
     },
 })
