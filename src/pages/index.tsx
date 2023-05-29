@@ -12,7 +12,7 @@ import { stripe } from "@/lib/stripe";
 import { GetServerSideProps, GetStaticProps } from "next";
 import Link from "next/link";
 import Head from "next/head";
-import { Handbag } from "phosphor-react";
+import { ArrowRight, Handbag } from "phosphor-react";
 
 interface HomeProps {
   products: {
@@ -24,7 +24,7 @@ interface HomeProps {
 }
 
 export default function Home(props: HomeProps) {
-  const [slideRef] = useKeenSlider({
+  const [slideRef, instanceRef] = useKeenSlider({
     slides: {
       perView: 3,
       spacing: 48,
@@ -38,6 +38,11 @@ export default function Home(props: HomeProps) {
       </Head>
 
       <MainContainer ref={slideRef} className='keen-slider'>
+
+        <div onClick={(e: any) => e.stopPropagation() || instanceRef.current?.next()}>
+          <ArrowRight size={32} color="white" />
+        </div>
+        
         {props.products.map(product => {
           return(
               <Product 

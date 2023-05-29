@@ -7,6 +7,18 @@ export const MainContainer = styled('main', {
     width: '100%',
     marginLeft: 'auto',
     minHeight: 620,
+
+    'div:first-child': {
+        height: '100%',
+        padding: '2rem',
+        background: 'linear-gradient(90deg, transparent, #121214)',
+        position: 'absolute',
+        right: '0',
+        display: 'flex',
+        alignItems: 'center',
+        'z-index': '999',
+        cursor:'pointer'
+    },
 })
 
 export const Product = styled(Link , {

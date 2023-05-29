@@ -5,13 +5,17 @@ import Image from 'next/image';
 import camiseta from '../assets/camisetas/2_explorer-t-shirt 2.png'
 import { AsideContainer, Container, Header, Overlay, ProductContainer } from '@/styles/pages/app';
 import { useState } from 'react';
-import { Handbag, X } from 'phosphor-react';
+import { ArrowRight, Handbag, X } from 'phosphor-react';
+import { useKeenSlider } from 'keen-slider/react';
 
 globalStyle()
 
 export default function App({ Component, pageProps }: AppProps) {
 
   const [sideBarOpen, setSideBarOpen] = useState(false);
+  const [sliderRef, instanceRef] = useKeenSlider({
+    initial: 0,
+  })
 
   function handleCloseSideBar(){
     setSideBarOpen(false);
@@ -25,9 +29,6 @@ export default function App({ Component, pageProps }: AppProps) {
           <Handbag size={24} weight='bold'/>
         </button>
       </Header>
-      {/*<div>
-        <ArrowRight size={32} color="white"/>
-  </div>*/}
       {
         sideBarOpen && 
           <>
