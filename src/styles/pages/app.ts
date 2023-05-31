@@ -76,6 +76,8 @@ export const AsideContainer = styled('aside', {
         flexDirection: 'column',
         gap: '0.5rem',
 
+        marginTop: 'auto',
+
         div: {
             display: 'flex',
             justifyContent: 'space-between',
@@ -104,9 +106,8 @@ export const AsideContainer = styled('aside', {
 export const ProductContainer = styled('article', {
     display: 'flex',
     gap: '1rem',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginTop: '2rem',
-    marginBottom: 'auto',
 
     'div:first-child': {
         background: 'linear-gradient(#1EA483 0%, #7465D4 100%)',

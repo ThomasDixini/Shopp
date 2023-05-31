@@ -6,6 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import Stripe from "stripe";
+import { useShoppingCart } from 'use-shopping-cart'
 
 interface ProductProps {
     product: {
@@ -20,9 +21,10 @@ interface ProductProps {
 
 export default function Product({ product }: ProductProps) {
     const [isCretingSessionCheckout, setIsCreatingSessionCheckout] = useState(false);
+    const { addItem } = useShoppingCart()
 
     async function handleBuyProduct() {
-        try {
+        /*try {
             setIsCreatingSessionCheckout(true)
             const response = await axios.post('/api/checkout', {
                 priceId: product.defaultPriceId
@@ -34,6 +36,15 @@ export default function Product({ product }: ProductProps) {
             setIsCreatingSessionCheckout(false)
             alert('Falha ao redirecionar para checkout')
         }
+        */
+        const newItem = {
+            ...product,
+            sku: product.name,
+            currency: 'BRL'
+        }
+        addItem(newItem, {
+            count: 1
+        })
     }
 
     return(
