@@ -23,20 +23,7 @@ export default function Product({ product }: ProductProps) {
     const [isCretingSessionCheckout, setIsCreatingSessionCheckout] = useState(false);
     const { addItem } = useShoppingCart()
 
-    async function handleBuyProduct() {
-        /*try {
-            setIsCreatingSessionCheckout(true)
-            const response = await axios.post('/api/checkout', {
-                priceId: product.defaultPriceId
-            })
-
-            const { checkoutUrl } = response.data;
-            window.location.href = checkoutUrl;
-        } catch(err) {
-            setIsCreatingSessionCheckout(false)
-            alert('Falha ao redirecionar para checkout')
-        }
-        */
+    async function handleAddProductOnCart() {
         const newItem = {
             ...product,
             sku: product.name,
@@ -61,7 +48,7 @@ export default function Product({ product }: ProductProps) {
                     <h1> {product.name} </h1>
                     <span> {product.price} </span>
                     <p> {product.description} </p>
-                    <button disabled={isCretingSessionCheckout} onClick={handleBuyProduct}> Comprar agora</button>
+                    <button disabled={isCretingSessionCheckout} onClick={handleAddProductOnCart}> Comprar agora</button>
                 </ContentContainer>
             </MainContainer>
         </>

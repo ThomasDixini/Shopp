@@ -5,6 +5,7 @@ import { X } from 'phosphor-react';
 import { useShoppingCart,  } from 'use-shopping-cart'
 import { CartEntry } from 'use-shopping-cart/core'
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 interface SideBarProps {
     closeSideBar: () => void
@@ -15,6 +16,7 @@ interface Product {
     name: string;
     imageUrl: string;
     price: string;
+    defaultPriceId: string;
 }
 
 export function SideBar({ closeSideBar }: SideBarProps) {
@@ -36,7 +38,27 @@ export function SideBar({ closeSideBar }: SideBarProps) {
         return acc
     }, 0)
 
-    console.log(total)
+    const priceIDs = listOfProducts.reduce((acc, product) => {
+        acc.push(product.defaultPriceId)
+        return acc
+    }, [] as Array<string>)
+
+    async function handleBuyProducts(priceIDs: string[]) {
+        try {
+            //setIsCreatingSessionCheckout(true)
+            const response = await axios.post('/api/checkout', {
+                priceIDs: priceIDs.map(id => {
+                    return id
+                })
+            })
+
+            const { checkoutUrl } = response.data;
+            window.location.href = checkoutUrl;
+        } catch(err) {
+            //setIsCreatingSessionCheckout(false)
+            alert('Falha ao redirecionar para checkout')
+        }
+    }
 
     return(
         <>
@@ -70,11 +92,11 @@ export function SideBar({ closeSideBar }: SideBarProps) {
                     </div>
                     <div>
                         <strong>Valor total</strong>
-                        <strong>R$ {total}</strong>
+                        <strong>R$ {total.toFixed(2)}</strong>
                     </div>
                 </div>
 
-                <button type="submit">Finalizar compra</button>
+                <button type="submit" onClick={() => handleBuyProducts(priceIDs)}>Finalizar compra</button>
             </AsideContainer>
         </>
     );
