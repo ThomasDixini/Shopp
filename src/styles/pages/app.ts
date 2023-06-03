@@ -22,6 +22,7 @@ export const Header = styled('header', {
     justifyContent: 'space-between',
 
     button: {
+        position: 'relative',
         padding: '0.825rem',
         borderRadius: 6,
         border: 0,
@@ -29,6 +30,21 @@ export const Header = styled('header', {
         color: '$white',
         '&:hover': {
             filter: 'brightness(0.8)',
+        },
+
+        div: {
+            position: 'absolute',
+            background: '$green300',
+            color: '$white',
+            fontWeight: 'bold',
+            width: '25px',
+            height: '25px',
+            borderRadius: '50%',
+            top: '-8px',
+            right: '-8px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
         }
     }
 })

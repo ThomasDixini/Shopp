@@ -4,8 +4,9 @@ import Image from 'next/image';
 import { X } from 'phosphor-react';
 import { useShoppingCart,  } from 'use-shopping-cart'
 import { CartEntry } from 'use-shopping-cart/core'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { ProductsContext } from '@/context/ProductsContext';
 
 interface SideBarProps {
     closeSideBar: () => void
@@ -20,16 +21,14 @@ interface Product {
 }
 
 export function SideBar({ closeSideBar }: SideBarProps) {
-    const [listOfProducts, setListOfProducts] = useState<Product[]>([])
-    const { cartDetails, totalPrice, cartCount, clearCart } = useShoppingCart()
-
-    
+    const { listOfProducts, loadListOfProducts } = useContext(ProductsContext)
+    const { cartDetails } = useShoppingCart()
 
     useEffect(() =>{
         for(const id in cartDetails) {
             const x = cartDetails[id] as unknown
             const product = x as Product
-            setListOfProducts(state => [...state, product])
+            loadListOfProducts(product)
         }
     },[cartDetails])
 
