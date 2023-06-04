@@ -21,7 +21,7 @@ interface Product {
 }
 
 export function SideBar({ closeSideBar }: SideBarProps) {
-    const { listOfProducts } = useContext(ProductsContext)
+    const { listOfProducts, handleRemoveItem } = useContext(ProductsContext)
     const { cartDetails } = useShoppingCart()
     
 
@@ -70,7 +70,7 @@ export function SideBar({ closeSideBar }: SideBarProps) {
                                 <div>
                                     <span>{item.name}</span>
                                     <strong>{item.price}</strong>
-                                    <a> Remover </a>
+                                    <a onClick={() => handleRemoveItem(item)}> Remover </a>
                                 </div>
                             </ProductContainer>
                         );

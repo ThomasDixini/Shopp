@@ -15,15 +15,16 @@ interface Product {
 
 interface ProductsContextData {
     listOfProducts: Product[],
-    loadListOfProducts: (data: Product) => void
+    loadListOfProducts: (data: Product) => void;
+    handleRemoveItem: (item: Product) => void
 }
 
 export const ProductsContext = createContext({} as ProductsContextData)
 
 export function ProductsContextProvider({children}: ProductsProviderProps) {
     const [listOfProducts, setListOfProducts] = useState<Product[]>([])
-    const { cartDetails, clearCart } = useShoppingCart()
-
+    const { cartDetails, decrementItem, clearCart} = useShoppingCart()
+    
     useEffect(() =>{
         for(const id in cartDetails) {
             const x = cartDetails[id] as unknown
@@ -36,8 +37,14 @@ export function ProductsContextProvider({children}: ProductsProviderProps) {
         setListOfProducts([...listOfProducts, data])
     }
 
+    function handleRemoveItem(item: Product){
+        const itemFiltred = listOfProducts.filter(product => product.id != item.id)
+        setListOfProducts(itemFiltred)
+        decrementItem(item.id)
+    }
+
     return (
-        <ProductsContext.Provider value={{listOfProducts, loadListOfProducts}}>
+        <ProductsContext.Provider value={{listOfProducts, loadListOfProducts, handleRemoveItem}}>
             {children}
         </ProductsContext.Provider>
     )
