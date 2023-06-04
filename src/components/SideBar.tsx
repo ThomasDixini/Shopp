@@ -21,16 +21,9 @@ interface Product {
 }
 
 export function SideBar({ closeSideBar }: SideBarProps) {
-    const { listOfProducts, loadListOfProducts } = useContext(ProductsContext)
+    const { listOfProducts } = useContext(ProductsContext)
     const { cartDetails } = useShoppingCart()
-
-    useEffect(() =>{
-        for(const id in cartDetails) {
-            const x = cartDetails[id] as unknown
-            const product = x as Product
-            loadListOfProducts(product)
-        }
-    },[cartDetails])
+    
 
     const total = listOfProducts.reduce((acc, product) => {
         acc += 79.9

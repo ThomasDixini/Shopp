@@ -1,10 +1,11 @@
+import { ProductsContext } from "@/context/ProductsContext";
 import { stripe } from "@/lib/stripe";
 import { ContentContainer, MainContainer, ProductContainer } from "@/styles/pages/product";
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Stripe from "stripe";
 import { useShoppingCart } from 'use-shopping-cart'
 
@@ -14,24 +15,26 @@ interface ProductProps {
         name: string;
         description: string;
         imageUrl: string;
-        price: number;
+        price: string;
         defaultPriceId: string;
     }
 }
 
 export default function Product({ product }: ProductProps) {
-    const [isCretingSessionCheckout, setIsCreatingSessionCheckout] = useState(false);
+    const { loadListOfProducts } = useContext(ProductsContext)
     const { addItem } = useShoppingCart()
 
     async function handleAddProductOnCart() {
         const newItem = {
             ...product,
             sku: product.name,
-            currency: 'BRL'
+            currency: 'BRL',
+            price: Number(product.price)
         }
         addItem(newItem, {
             count: 1
         })
+        loadListOfProducts(product)
     }
 
     return(
@@ -48,7 +51,7 @@ export default function Product({ product }: ProductProps) {
                     <h1> {product.name} </h1>
                     <span> {product.price} </span>
                     <p> {product.description} </p>
-                    <button disabled={isCretingSessionCheckout} onClick={handleAddProductOnCart}> Comprar agora</button>
+                    <button onClick={handleAddProductOnCart}> Colocar na sacola </button>
                 </ContentContainer>
             </MainContainer>
         </>

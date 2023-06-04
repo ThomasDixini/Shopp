@@ -22,10 +22,18 @@ export const ProductsContext = createContext({} as ProductsContextData)
 
 export function ProductsContextProvider({children}: ProductsProviderProps) {
     const [listOfProducts, setListOfProducts] = useState<Product[]>([])
-    
+    const { cartDetails, clearCart } = useShoppingCart()
+
+    useEffect(() =>{
+        for(const id in cartDetails) {
+            const x = cartDetails[id] as unknown
+            const product = x as Product
+            loadListOfProducts(product)
+        } 
+    },[])
 
     function loadListOfProducts(data: Product) {
-        setListOfProducts(state => [...state, data])
+        setListOfProducts([...listOfProducts, data])
     }
 
     return (
