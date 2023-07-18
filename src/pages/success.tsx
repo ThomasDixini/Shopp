@@ -32,7 +32,7 @@ export default function Success({customerName, products}: SuccessProps) {
                         {
                             products.imageUrl.map(image => {
                                 return (
-                                    <ImageContainer>
+                                    <ImageContainer key={new Date().getDate()}>
                                         <Image src={image} width={150} height={110} alt="" />
                                     </ImageContainer>
                                 )
