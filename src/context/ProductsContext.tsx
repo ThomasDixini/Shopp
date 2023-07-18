@@ -41,7 +41,7 @@ export function ProductsContextProvider({children}: ProductsProviderProps) {
             const product = x as Product
             loadListOfProducts(product)
         } 
-    },[cartDetails])
+    },[cartDetails, loadListOfProducts])
 
     return (
         <ProductsContext.Provider value={{listOfProducts, loadListOfProducts, handleRemoveItem}}>
