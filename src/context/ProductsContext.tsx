@@ -25,14 +25,6 @@ export function ProductsContextProvider({children}: ProductsProviderProps) {
     const [listOfProducts, setListOfProducts] = useState<Product[]>([])
     const { cartDetails, decrementItem, clearCart} = useShoppingCart()
     
-    useEffect(() =>{
-        for(const id in cartDetails) {
-            const x = cartDetails[id] as unknown
-            const product = x as Product
-            loadListOfProducts(product)
-        } 
-    },[])
-
     function loadListOfProducts(data: Product) {
         setListOfProducts([...listOfProducts, data])
     }
@@ -42,6 +34,14 @@ export function ProductsContextProvider({children}: ProductsProviderProps) {
         setListOfProducts(itemFiltred)
         decrementItem(item.id)
     }
+
+    useEffect(() =>{
+        for(const id in cartDetails) {
+            const x = cartDetails[id] as unknown
+            const product = x as Product
+            loadListOfProducts(product)
+        } 
+    },[cartDetails])
 
     return (
         <ProductsContext.Provider value={{listOfProducts, loadListOfProducts, handleRemoveItem}}>
