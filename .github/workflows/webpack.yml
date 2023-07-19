@@ -21,15 +21,14 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        
-    - run: |
-          npm install --save --legacy-peer-deps
-          npm install -D webpack-cli
           
     - name: Build
+      uses: actions/checkout@v3
       env:
-        STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+        STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}  
       with: |
+        npm install --save --legacy-peer-deps
+        npm install -D webpack-cli
         npm run build
         npx webpack
       
