@@ -35,13 +35,13 @@ export function ProductsContextProvider({children}: ProductsProviderProps) {
         decrementItem(item.id)
     }
 
-    useEffect(() =>{
+    /*useEffect(() =>{
         for(const id in cartDetails) {
             const x = cartDetails[id] as unknown
             const product = x as Product
             loadListOfProducts(product)
         } 
-    },[cartDetails, loadListOfProducts])
+    },[cartDetails, loadListOfProducts])*/
 
     return (
         <ProductsContext.Provider value={{listOfProducts, loadListOfProducts, handleRemoveItem}}>
