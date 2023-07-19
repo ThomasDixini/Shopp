@@ -25,8 +25,9 @@ jobs:
     - name: Build
       env:
         STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-      with: |
-        npm install --save --legacy-peer-deps
-        npm install -D webpack-cli
-        npm run build
-        npx webpack
+      with:
+        deploy: |
+          npm install --save --legacy-peer-deps
+          npm install -D webpack-cli
+          npm run build
+          npx webpack
