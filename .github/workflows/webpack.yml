@@ -26,6 +26,7 @@ jobs:
 
     - name: Build
       run: |
+        npm rm use-shopping-cart
         npm install
         npm run build
         npx webpack
