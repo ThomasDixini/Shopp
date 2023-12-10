@@ -2,6 +2,7 @@ import { ProductsContext } from "@/context/ProductsContext";
 import { stripe } from "@/lib/stripe";
 import { ContentContainer, MainContainer, ProductContainer } from "@/styles/pages/product";
 import axios from "axios";
+import { randomUUID } from "crypto";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
@@ -12,7 +13,9 @@ import { useShoppingCart } from 'use-shopping-cart'
 interface ProductProps {
     product: {
         id: string;
+        id_product: string;
         name: string;
+        quantity: number;
         description: string;
         imageUrl: string;
         price: string;
@@ -27,6 +30,7 @@ export default function Product({ product }: ProductProps) {
     async function handleAddProductOnCart() {
         const newItem = {
             ...product,
+            id_product: Math.random(),
             sku: product.name,
             currency: 'BRL',
             price: Number(product.price)
@@ -34,7 +38,9 @@ export default function Product({ product }: ProductProps) {
         addItem(newItem, {
             count: 1
         })
-        loadListOfProducts(product)
+        if(product.id != null){
+            loadListOfProducts({...product, quantity: product.quantity += 1})
+        }
     }
 
     return(
@@ -45,12 +51,14 @@ export default function Product({ product }: ProductProps) {
         
             <MainContainer>
                 <ProductContainer>
-                    <Image src={product.imageUrl} width={520} height={480} alt=""/>
+                    <Image src={product.imageUrl} alt="" fill/>
                 </ProductContainer>
                 <ContentContainer>
-                    <h1> {product.name} </h1>
-                    <span> {product.price} </span>
-                    <p> {product.description} </p>
+                    <div>
+                        <h1> {product.name} </h1>
+                        <span> {product.price} </span>
+                        <p> {product.description} </p>
+                    </div>
                     <button onClick={handleAddProductOnCart}> Colocar na sacola </button>
                 </ContentContainer>
             </MainContainer>

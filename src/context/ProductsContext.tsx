@@ -7,6 +7,8 @@ interface ProductsProviderProps {
 
 interface Product {
     id: string;
+    id_product: string;
+    quantity: number;
     name: string;
     imageUrl: string;
     price: string;

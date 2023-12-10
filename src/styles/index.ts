@@ -27,5 +27,12 @@ export const {
             xl: '1.5rem',
             '2xl': '2rem',
         }
+    },
+    media: {
+        media1024: '(max-width: 1024px)',
+        media768: '(max-width: 768px)',
+        media667: '(max-width: 667px)',
+        media474: '(max-width: 474px)',
+        media375: '(max-width: 375px)',
     }
 })

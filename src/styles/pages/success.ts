@@ -1,4 +1,4 @@
-import { styled } from "@stitches/react";
+import { styled } from "@/styles/index";
 
 export const SuccessContainer = styled('main', {
     display: 'flex',
@@ -8,10 +8,18 @@ export const SuccessContainer = styled('main', {
 
     height: 656,
     margin: '0 auto',
+    padding: '5rem',
 
     h1: {
         fontSize: 'xx-large',
         color: '$gray100',
+
+        "@media667": {
+            fontSize: 'x-large'
+        },
+        "@media474": {
+            fontSize: 'large'
+        },
     },
 
     div: {
@@ -26,6 +34,10 @@ export const SuccessContainer = styled('main', {
         color: '$gray300',
         textAlign: 'center',
         marginTop: '2rem',
+
+        "@media667": {
+            fontSize: 'medium'
+        },
     },
     a: {
         display: 'block',
@@ -38,19 +50,23 @@ export const SuccessContainer = styled('main', {
 
         '&:hover': {
             color: '$green500'
-        }
+        },
+
+        "@media474": {
+            fontSize: 'large'
+        },
     }
 })
 export const ImageContainer = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    
+
     '& + &': {
         marginLeft: '-3rem',
         boxShadow: '-2px 2px 60px rgba(0,0,0,0.8)'
     },
-    
+
 
     marginTop: '5rem',
     width: '100%',

@@ -28,6 +28,20 @@ export default function Home(props: HomeProps) {
     slides: {
       perView: 3,
       spacing: 48,
+    },
+    breakpoints: {
+      '(max-width: 1024px)': {
+        slides: {
+          perView: 2,
+          spacing: 48,
+        }
+      },
+      '(max-width: 667px)': {
+        slides: {
+          perView: 1,
+          spacing: 48,
+        }
+      }
     }
   })
 
@@ -46,9 +60,9 @@ export default function Home(props: HomeProps) {
               <Product 
                 key={product.id} 
                 href={`/product/${product.id}`} 
-                className='keen-slider__slide'
+                className='keen-slider__slide'               
               >
-                <Image src={product.imageUrl} alt="" width={520} height={480}/>
+                <Image src={product.imageUrl} alt="" fill/>
                 <footer>
                   <div>
                     <span> {product.name}</span>

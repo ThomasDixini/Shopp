@@ -70,6 +70,7 @@ export function SideBar({ closeSideBar }: SideBarProps) {
                                 <div>
                                     <span>{item.name}</span>
                                     <strong>{item.price}</strong>
+                                    <span> Quantidade: {listOfProducts.filter(product => product.id == item.id).length}</span>
                                     <a onClick={() => handleRemoveItem(item)}> Remover </a>
                                 </div>
                             </ProductContainer>
@@ -77,18 +78,18 @@ export function SideBar({ closeSideBar }: SideBarProps) {
                     })
                 }
 
-                <div>
-                    <div>
-                        <span>Quantidade</span>
-                        <span>{listOfProducts.length} items</span>
-                    </div>
-                    <div>
-                        <strong>Valor total</strong>
-                        <strong>R$ {total.toFixed(2)}</strong>
-                    </div>
-                </div>
+                        <div>
+                            <div>
+                                <span>Quantidade</span>
+                                <span>{listOfProducts.length} items</span>
+                            </div>
+                            <div>
+                                <strong>Valor total</strong>
+                                <strong>R$ {total.toFixed(2)}</strong>
+                            </div>
+                        </div>
 
-                <button type="submit" onClick={() => handleBuyProducts(priceIDs)}>Finalizar compra</button>
+                        <button type="submit" onClick={() => handleBuyProducts(priceIDs)}>Finalizar compra</button>
             </AsideContainer>
         </>
     );

@@ -13,10 +13,11 @@ export const Container = styled('div', {
 })
 
 export const HeaderContainer = styled('header', {
-    padding: '2rem 0',
+    padding: '2rem',
     width: '100%',
     maxWidth: 1100,
     margin: '0 auto',
+    marginTop: '5rem',
 
     display: 'flex',
     justifyContent: 'space-between',
@@ -69,6 +70,14 @@ export const AsideContainer = styled('aside', {
     flexDirection: 'column',
 
     padding: '3rem',
+
+    "@media667": {
+        width: '100%',
+    },
+    "@media474": {
+        width: '100%',
+        fontSize: '0.8rem'
+    },
 
     svg: {
         position: 'absolute',

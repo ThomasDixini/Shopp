@@ -7,6 +7,7 @@ export const MainContainer = styled('main', {
     width: '100%',
     marginLeft: 'auto',
     minHeight: 620,
+    padding: '2.5rem',
 
     '& > div:first-child': {
         height: '100%',
@@ -24,10 +25,9 @@ export const MainContainer = styled('main', {
 export const Product = styled(Link , {
     background: 'linear-gradient(#1EA483 0%, #7465D4 100%)',
     borderRadius: 8,
-    //padding: '0.25rem',
     cursor: 'pointer',
     position: 'relative',
-
+    padding: '5rem',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -35,7 +35,7 @@ export const Product = styled(Link , {
     overflow: 'hidden',
     
     img: {
-        objectFit: 'cover'
+        objectFit: 'contain',
     },
 
     footer: {
